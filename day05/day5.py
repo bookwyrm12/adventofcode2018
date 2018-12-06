@@ -13,6 +13,14 @@ with open('day5.in') as f:
 # Part 1
 def part1(polymer):
     polymer = polymer.strip()
+    polymer_new = react(polymer)
+
+    answer = len(polymer_new)
+    print('Part 1: # Remaining Units: {}'.format(answer))
+
+
+# Helper
+def react(polymer):
     polymer_new = []
 
     for i in range(len(polymer)):
@@ -22,10 +30,8 @@ def part1(polymer):
             if abs(ord(polymer_new[-1]) - ord(polymer_new[-2])) == 32:
                 polymer_new.pop()
                 polymer_new.pop()
-    
-    answer = len(polymer_new)
-    print('Part 1: # Remaining Units: {}'.format(answer))
 
+    return polymer_new
 
 # Do the stuff
 part1(data)
