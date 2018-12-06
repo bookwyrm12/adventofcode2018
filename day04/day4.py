@@ -25,6 +25,20 @@ def part1(records):
     print('Part 1: Guard ID * Minute: {}'.format(answer))
 
 
+# Part 2
+def part2(records):
+    records = sorted(records.splitlines())
+    guard_data = get_guard_data(records)
+    minutes = [ ( int(guard_data[x]['asleep_min_tally'].get(i, 0)), x, str(i) )
+        for x in guard_data for i in range(60) ]
+    
+    guard = minute = 0
+    guard = max(minutes)[1]
+    minute = max(minutes)[2]
+    answer = int(guard) * int(minute)
+    print('Part 2: Guard ID * Minute: {}'.format(answer))
+
+
 # Helper
 def get_guard_data(records):
     guard_data = {}
@@ -61,3 +75,4 @@ def get_guard_data(records):
 
 # Do the stuff
 part1(data)
+part2(data)
