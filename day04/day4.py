@@ -16,7 +16,17 @@ with open('day4.in') as f:
 # Part 1
 def part1(records):
     records = sorted(records.splitlines())
+    guard_data = get_guard_data(records)
     
+    guard = minute = 0
+    guard = max([(int(guard_data[x]['asleep_total']), x) for x in guard_data])[1]
+    minute = guard_data[guard]['most_asleep_min']
+    answer = int(guard) * int(minute)
+    print('Part 1: Guard ID * Minute: {}'.format(answer))
+
+
+# Helper
+def get_guard_data(records):
     guard_data = {}
     guard_cur = None
     rec_mins = falls_asleep = wakes_up = 0
@@ -47,12 +57,7 @@ def part1(records):
                 elif guard_data[guard_cur]['asleep_min_tally'][i] > guard_data[guard_cur]['asleep_min_tally'][guard_data[guard_cur]['most_asleep_min']]:
                     guard_data[guard_cur]['most_asleep_min'] = i
     
-    guard = minute = 0
-    guard = max([(int(guard_data[x]['asleep_total']), x) for x in guard_data])[1]
-    minute = guard_data[guard]['most_asleep_min']
-    answer = int(guard) * int(minute)
-    print('Part 1: Guard ID * Minute: {}'.format(answer))
-
+    return guard_data
 
 # Do the stuff
 part1(data)
