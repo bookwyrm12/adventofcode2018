@@ -12,15 +12,27 @@ with open('day5.in') as f:
 
 # Part 1
 def part1(polymer):
-    polymer = polymer.strip()
     polymer_new = react(polymer)
 
     answer = len(polymer_new)
     print('Part 1: # Remaining Units: {}'.format(answer))
 
 
+# Part 2
+def part2(polymer):
+    polymer_uniq = { l.lower() for l in polymer.strip() }
+    polymer_new = []
+
+    for p in polymer_uniq:
+        polymer_new.append((len(react(polymer.replace(p, '').replace(p.upper(), ''))), p))
+
+    answer = min(polymer_new)[0]
+    print('Part 2: # Remaining Units: {}'.format(answer))
+
+
 # Helper
 def react(polymer):
+    polymer = polymer.strip()
     polymer_new = []
 
     for i in range(len(polymer)):
@@ -33,5 +45,7 @@ def react(polymer):
 
     return polymer_new
 
+
 # Do the stuff
 part1(data)
+part2(data)
