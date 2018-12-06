@@ -14,7 +14,7 @@ with open('day5.in') as f:
 def part1(polymer):
     polymer = polymer.strip()
     polymer_new = []
-    poly_ptr = 0
+
     for i in range(len(polymer)):
         polymer_new.append(polymer[i])
         if len(polymer_new) > 1:
